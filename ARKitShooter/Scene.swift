@@ -12,6 +12,7 @@ import GameplayKit
 
 class Scene: SKScene {
     
+    let startTime = Date()
     let remainingLabel = SKLabelNode()
     var timer: Timer?
     var targetsCreated = 0
@@ -20,6 +21,7 @@ class Scene: SKScene {
             remainingLabel.text = "Remaining: \(targetCount)"
         }
     }
+    
     
     override func didMove(to view: SKView) {
         // Setup your scene here
@@ -84,6 +86,13 @@ class Scene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        guard let touch = touches.first else {return}
+        let location = touch.location(in: self)
+        
+        // Find which nodes were hit
+        let hit = nodes(at: location)
+        
         
         
     }
