@@ -93,7 +93,17 @@ class Scene: SKScene {
         // Find which nodes were hit
         let hit = nodes(at: location)
         
-        
+        // Sprite deletion action and animation
+        if let sprite = hit.first {
+            let scaleOut = SKAction.scale(to: 2, duration: 0.2)
+            let fadeOut = SKAction.fadeOut(withDuration: 0.2)
+            let group = SKAction.group([scaleOut, fadeOut])
+            let sequence = SKAction.sequence([group, SKAction.removeFromParent()])
+            sprite.run(sequence)
+            
+            targetCount -= 1
+            
+        }
         
     }
 }
